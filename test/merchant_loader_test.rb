@@ -3,7 +3,6 @@ require 'minitest/pride'
 require './lib/merchant_loader'
 
 
-
 class FileIo < Minitest::Test
 
   def test_it_can_load_a_file
