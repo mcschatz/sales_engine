@@ -4,12 +4,13 @@ require_relative 'merchant'
 class MerchantLoader
 
   def initialize(repository, filename)
-    parse_merchants(repository, filename)
+    @repository = repository
+    @filename   = filename
   end
 
-  def parse_merchants(repository, filename)
-    CSV.foreach(filename, :headers => true, :header_converters => :symbol) do |row|
-      repository.add_merchant(row, repository)
+  def parse_merchants
+    CSV.foreach(@filename, :headers => true, :header_converters => :symbol) do |row|
+      @repository.add_merchant(row, @repository)
     end
   end
 end
