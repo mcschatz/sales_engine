@@ -11,6 +11,11 @@ class MerchantRepository
   def load_merchants
    MerchantLoader.new(self, '../data/merchants.csv').parse_merchants(self, '../data/merchants.csv')
   end
+
+  def all
+    merchants
+  end
+
 end
 
-puts MerchantRepository.new.merchants.class
+puts MerchantRepository.new.load_merchants
