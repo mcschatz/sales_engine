@@ -9,7 +9,7 @@ class MerchantRepository
   end
 
   def load_merchants
-   MerchantLoader.new(self, '../data/merchants.csv')
+   MerchantLoader.new(self, './data/merchants.csv')
   end
 
   def add_merchant(row, repository)
