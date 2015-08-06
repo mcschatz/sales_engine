@@ -1,18 +1,26 @@
 require_relative 'merchant_repository'
 require_relative 'customer_repository'
 require_relative 'invoice_item_repository'
-# require_relative 'invoice_repository'
-# require_relative 'item_repository'
-# require_relative 'transaction_repository'
+require_relative 'invoice_repository'
+require_relative 'item_repository'
+require_relative 'transaction_repository'
 
 class SalesEngine
-  attr_reader :merchant_repository, :customer_repository, :invoice_item_repository
+  attr_reader :merchant_repository,
+              :customer_repository,
+              :invoice_item_repository,
+              :invoice_repository,
+              :item_repository,
+              :transaction_repository
 
   def initialize(data_dir="data")
     @data_dir = data_dir
-    @merchant_repository = MerchantRepository.new([])
-    @customer_repository = CustomerRepository.new([])
+    @merchant_repository      = MerchantRepository.new([])
+    @customer_repository      = CustomerRepository.new([])
     @invoice_item_repository  = InvoiceItemRepository.new([])
+    @invoice_repository       = InvoiceRepository.new([])
+    @item_repository          = ItemRepository.new([])
+    @transaction_repository   = TransactionRepository.new([])
   end
 
   def startup
@@ -22,16 +30,21 @@ class SalesEngine
                   .parse_customers
     InvoiceItemLoader.new(@invoice_item_repository, "./#{@data_dir}/invoice_items.csv")
                   .parse_invoice_items
+    InvoiceLoader.new(@invoice_repository, "./#{@data_dir}/invoices.csv")
+                  .parse_invoices
+    ItemLoader.new(@item_repository, "./#{@data_dir}/items.csv")
+                  .parse_items
+    TransactionLoader.new(@transaction_repository, "./#{@data_dir}/transactions.csv")
+                  .parse_transactions
   end
 end
 
 
 engine = SalesEngine.new
 engine.startup
-engine.merchant_repository.inspect
-engine.customer_repository.inspect
-# engine.invoice_repository
-# engine.item_repository
-puts engine.invoice_item_repository.inspect
-# engine.customer_repository
-# engine.transaction_repository
+engine.merchant_repository
+engine.customer_repository
+engine.invoice_item_repository
+engine.invoice_repository
+engine.item_repository
+puts engine.transaction_repository.inspect
