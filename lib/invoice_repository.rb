@@ -21,28 +21,20 @@ class InvoiceRepository
     invoices.sample
   end
 
-  def find_by_name(name)
-    invoices.find {|invoice| invoice.name.downcase == name.downcase}
-  end
-
   def find_by_id(id)
     invoices.find {|invoice| invoice.id == id}
   end
 
-  def find_by_created_at(date)
-    invoices.find {|invoice| invoice.created_at == date}
+  def find_by_customer_id(id)
+    invoices.find {|invoice| invoice.customer_id == id}
   end
 
-  def find_by_updated_at(date)
-    invoices.find {|invoice| invoice.updated_at == date}
+  def find_by_merchant_id(id)
+    invoices.find {|invoice| invoice.merchant_id == id}
   end
 
-  def find_all_by_name(name)
-    if name != ''
-      invoices.find_all {|invoice| invoice.name == name}
-    else
-      []
-    end
+  def find_by_status(status)
+    invoices.find {|invoice| invoice.status == status}
   end
 
   def find_all_by_id(id)
@@ -53,20 +45,27 @@ class InvoiceRepository
     end
   end
 
-  def find_all_by_created_at(date)
-    if date != ''
-      invoices.find_all {|invoice| invoice.created_at == date}
+  def find_all_by_customer_id(id)
+    if id != ''
+      invoices.find_all {|invoice| invoice.customer_id == id}
     else
       []
     end
   end
 
-  def find_all_by_updated_at(date)
-    if date != ''
-      invoices.find_all {|invoice| invoice.updated_at == date}
+  def find_all_by_merchant_id(id)
+    if id != ''
+      invoices.find_all {|invoice| invoice.merchant_id == id}
     else
       []
     end
   end
 
+  def find_all_by_status(status)
+    if status != ''
+      invoices.find_all {|invoice| invoice.status == status}
+    else
+      []
+    end
+  end
 end
