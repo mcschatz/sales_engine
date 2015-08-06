@@ -54,8 +54,3 @@ class MerchantRepository
   end
 
 end
-
-# mr = MerchantRepository.new
-# mr.load_merchants
-# mr.merchants.first.name
-# puts mr.find_all_by_name('Williamson Group')
