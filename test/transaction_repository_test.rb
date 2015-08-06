@@ -21,7 +21,7 @@ class TransactionRepositoryTest < Minitest::Test
     assert_equal 1, sample.transactions.count
   end
 
-  def test_it_can_hold_three_transactions
+  def test_it_can_hold_four_transactions
     assert_equal 4, @tr.transactions.count
   end
 

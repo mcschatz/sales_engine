@@ -9,7 +9,7 @@ class TransactionRepository
     @transactions = transactions
   end
 
-  def add_customer(row, repository)
+  def add_transaction(row, repository)
     transactions << Transaction.new(row, self)
   end
 
