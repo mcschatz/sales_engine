@@ -5,7 +5,8 @@ class Transaction
               :credit_card_expiration_date,
               :result,
               :created_at,
-              :updated_at
+              :updated_at,
+              :repository
 
   def initialize(row, repository)
     @id                          = row[:id]

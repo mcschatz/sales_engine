@@ -10,9 +10,9 @@ class SalesEngine
 
   def initialize(data_dir="data")
     @data_dir = data_dir
-    @merchant_repository = MerchantRepository.new([])
-    @customer_repository = CustomerRepository.new([])
-    @invoice_item_repository  = InvoiceItemRepository.new([])
+    @merchant_repository      = MerchantRepository.new([], self)
+    @customer_repository      = CustomerRepository.new([], self)
+    @invoice_item_repository  = InvoiceItemRepository.new([], self)
   end
 
   def startup
@@ -22,6 +22,10 @@ class SalesEngine
                   .parse_customers
     InvoiceItemLoader.new(@invoice_item_repository, "./#{@data_dir}/invoice_items.csv")
                   .parse_invoice_items
+  end
+
+  def find_items_by_merchant_id(id)
+    item_repository.find_all_by_merchant_id(id)
   end
 end
 

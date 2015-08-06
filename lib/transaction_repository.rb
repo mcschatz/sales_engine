@@ -33,20 +33,8 @@ class TransactionRepository
     transactions.find {|transaction| transaction.credit_card_number == number}
   end
 
-   def find_by_credit_card_expiration_date(date)
-    transactions.find {|transaction| transaction.credit_card_expiration_date == date}
-  end
-
   def find_by_result(result)
     transactions.find {|transaction| transaction.result == result}
-  end
-
-  def find_by_created_at(date)
-    transactions.find {|transaction| transaction.created_at == date}
-  end
-
-  def find_by_updated_at(date)
-    transactions.find {|transaction| transaction.updated_at == date}
   end
 
   def find_all_by_id(id)
@@ -73,33 +61,9 @@ class TransactionRepository
     end
   end
 
-  def find_all_by_credit_card_expiration_date(date)
-    if date != ''
-      transactions.find_all {|transaction| transaction.credit_card_expiration_date == date}
-    else
-      []
-    end
-  end
-
   def find_all_by_result(result)
     if result != ''
       transactions.find_all {|transaction| transaction.result == result}
-    else
-      []
-    end
-  end
-
-  def find_all_by_created_at(date)
-    if date != ''
-      transactions.find_all {|transaction| transaction.created_at == date}
-    else
-      []
-    end
-  end
-
-  def find_all_by_updated_at(date)
-    if date != ''
-      transactions.find_all {|transaction| transaction.updated_at == date}
     else
       []
     end

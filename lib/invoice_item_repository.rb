@@ -41,14 +41,6 @@ class InvoiceItemRepository
     invoice_items.find {|invoice_item| invoice_item.unit_price == unit_price}
   end
 
-  def find_by_created_at(date)
-    invoice_items.find {|invoice_item| invoice_item.created_at == date}
-  end
-
-  def find_by_updated_at(date)
-    invoice_items.find {|invoice_item| invoice_item.updated_at == date}
-  end
-
   def find_all_by_id(id)
     if id != ''
       invoice_items.find_all {|invoice_item| invoice_item.id == id}
@@ -56,7 +48,6 @@ class InvoiceItemRepository
       []
     end
   end
-
 
   def find_all_by_item_id(item_id)
     if item_id != ''
@@ -66,7 +57,6 @@ class InvoiceItemRepository
     end
   end
 
-
   def find_all_by_invoice_id(invoice_id)
     if invoice_id != ''
       invoice_items.find_all {|invoice_item| invoice_item.invoice_id == invoice_id}
@@ -74,7 +64,6 @@ class InvoiceItemRepository
       []
     end
   end
-
 
   def find_all_by_quantity(quantity)
     if quantity != ''
@@ -84,26 +73,9 @@ class InvoiceItemRepository
     end
   end
 
-
   def find_all_by_unit_price(unit_price)
     if unit_price != ''
       invoice_items.find_all {|invoice_item| invoice_item.unit_price == unit_price}
-    else
-      []
-    end
-  end
-
-  def find_all_by_created_at(date)
-    if date != ''
-      invoice_items.find_all {|invoice_item| invoice_item.created_at == date}
-    else
-      []
-    end
-  end
-
-  def find_all_by_updated_at(date)
-    if date != ''
-      invoice_items.find_all {|invoice_item| invoice_item.updated_at == date}
     else
       []
     end

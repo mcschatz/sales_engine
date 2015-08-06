@@ -10,7 +10,7 @@ class ItemRepository
   end
 
   def add_item(row, repository)
-    items << item.new(row, self)
+    items << Item.new(row, self)
   end
 
   def all
@@ -39,14 +39,6 @@ class ItemRepository
 
   def find_by_merchant_id(id)
     items.find {|item| item.merchant_id == id}
-  end
-
-  def find_by_created_at(date)
-    items.find {|item| item.created_at == date}
-  end
-
-  def find_by_updated_at(date)
-    items.find {|item| item.updated_at == date}
   end
 
   def find_all_by_id(id)
@@ -84,22 +76,6 @@ class ItemRepository
   def find_all_by_merchant_id(id)
     if id != ''
       items.find_all {|item| item.merchant_id == id}
-    else
-      []
-    end
-  end
-
-  def find_all_by_created_at(date)
-    if date != ''
-      items.find_all {|item| item.created_at == date}
-    else
-      []
-    end
-  end
-
-  def find_all_by_updated_at(date)
-    if date != ''
-      items.find_all {|item| item.updated_at == date}
     else
       []
     end
