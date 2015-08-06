@@ -15,7 +15,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
     assert_equal 0, sample.invoice_items.count
   end
 
-  def test_it_hold_one_merchant
+  def test_it_hold_one_invoice_item
     sample = InvoiceItemRepository.new(["hello jeff"])
     assert_equal 1, sample.invoice_items.count
   end
