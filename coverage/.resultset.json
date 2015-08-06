@@ -1,10 +1,12 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/bad6e/turing/module-1/projects/sales_engine/lib/customer_repository.rb": [
+      "/Users/mcschatz/Documents/turing/module_1/sales_engine/lib/transaction.rb": [
         1,
         1,
         null,
+<<<<<<< HEAD
+=======
         1,
         1,
         1,
@@ -50,55 +52,24 @@
         4,
         null,
         1,
+>>>>>>> 093afce137c57f476c667c0ac4d71b654fcff5e1
+        null,
+        null,
+        null,
         null,
         null,
         null,
         1,
-        2,
-        4,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        2,
-        4,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        2,
-        4,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        2,
-        4,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/bad6e/turing/module-1/projects/sales_engine/lib/customer_loader.rb": [
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        0,
-        0,
-        null,
-        null,
-        1,
+<<<<<<< HEAD
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+=======
         0,
         0,
         null,
@@ -681,16 +652,15 @@
         null,
         1,
         1,
+>>>>>>> 093afce137c57f476c667c0ac4d71b654fcff5e1
         null,
         null
-      ],
-      "/Users/bad6e/turing/module-1/projects/sales_engine/test/sales_engine_test.rb": [
-
-      ],
-      "/Users/bad6e/turing/module-1/projects/sales_engine/test/transaction_repository_test.rb": [
-
       ]
     },
+<<<<<<< HEAD
+    "timestamp": 1438880191
+=======
     "timestamp": 1438880556
+>>>>>>> 093afce137c57f476c667c0ac4d71b654fcff5e1
   }
 }
