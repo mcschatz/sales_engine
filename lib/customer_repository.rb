@@ -33,14 +33,6 @@ class CustomerRepository
     customers.find {|customer| customer.id == id}
   end
 
-  def find_by_created_at(date)
-    customers.find {|customer| customer.created_at == date}
-  end
-
-  def find_by_updated_at(date)
-    customers.find {|customer| customer.updated_at == date}
-  end
-
   def find_all_by_first_name(name)
     if name != ''
       customers.find_all {|customer| customer.first_name == name}
@@ -64,21 +56,4 @@ class CustomerRepository
       []
     end
   end
-
-  def find_all_by_created_at(date)
-    if date != ''
-      customers.find_all {|customer| customer.created_at == date}
-    else
-      []
-    end
-  end
-
-  def find_all_by_updated_at(date)
-    if date != ''
-      customers.find_all {|customer| customer.updated_at == date}
-    else
-      []
-    end
-  end
-
 end

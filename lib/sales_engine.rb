@@ -15,12 +15,12 @@ class SalesEngine
 
   def initialize(data_dir="data")
     @data_dir = data_dir
-    @merchant_repository      = MerchantRepository.new([])
-    @customer_repository      = CustomerRepository.new([])
-    @invoice_item_repository  = InvoiceItemRepository.new([])
-    @invoice_repository       = InvoiceRepository.new([])
-    @item_repository          = ItemRepository.new([])
-    @transaction_repository   = TransactionRepository.new([])
+    @merchant_repository      = MerchantRepository.new([], self)
+    @customer_repository      = CustomerRepository.new([], self)
+    @invoice_item_repository  = InvoiceItemRepository.new([], self)
+    @invoice_repository       = InvoiceRepository.new([], self)
+    @item_repository          = ItemRepository.new([], self)
+    @transaction_repository   = TransactionRepository.new([], self)
   end
 
   def startup
@@ -36,6 +36,10 @@ class SalesEngine
                   .parse_items
     TransactionLoader.new(@transaction_repository, "./#{@data_dir}/transactions.csv")
                   .parse_transactions
+  end
+
+  def find_items_by_merchant_id(id)
+    item_repository.find_all_by_merchant_id(id)
   end
 end
 
