@@ -4,7 +4,7 @@ require './lib/customer_repository'
 class CustomerRepositoryTest < Minitest::Test
 
   def setup
-    customer1 = Customer.new({id: 1, first_name: 'Schroeder', last_name: 'Jerde', created_at: '2012-03-27 14:53:59 UTC', updated_at: '2012-03-27 14:53:59 UTC'}, self)
+    customer1 = Customer.new({id: 1, first_name: 'Timothy', last_name: 'Bigsby', created_at: '2012-02-11 13:43:29 UTC', updated_at: '2011-06-27 14:53:59 UTC'}, self)
     customer2 = Customer.new({id: 2, first_name: 'Timothy', last_name: 'Bigsby', created_at: '2012-02-11 13:43:29 UTC', updated_at: '2011-06-27 14:53:59 UTC'}, self)
     customer3 = Customer.new({id: '', first_name: '', last_name: '', created_at: '', updated_at: ''}, self)
     @cr = CustomerRepository.new([customer1, customer2, customer3])
@@ -77,23 +77,23 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_all_customers_by_first_name
-    assert_equal 1, @cr.find_all_by_first_name("Timothy").count
+    assert_equal 2, @cr.find_all_by_first_name("Timothy").count
   end
 
   def test_it_can_find_all_customers_by_last_name
-    assert_equal 1, @cr.find_all_by_last_name("Bigsby").count
+    assert_equal 2, @cr.find_all_by_last_name("Bigsby").count
   end
 
   def test_it_can_find_all_customers_by_id
-    assert_equal 1, @cr.find_all_by_id(2).count
+    assert_equal 1, @cr.find_all_by_id(1).count
   end
 
   def test_it_can_find_all_customers_by_created_at
-    assert_equal 1, @cr.find_all_by_created_at('2012-02-11 13:43:29 UTC').count
+    assert_equal 2, @cr.find_all_by_created_at('2012-02-11 13:43:29 UTC').count
   end
 
   def test_it_can_find_all_customers_by_updated_at
-    assert_equal 1, @cr.find_all_by_updated_at('2011-06-27 14:53:59 UTC').count
+    assert_equal 2, @cr.find_all_by_updated_at('2011-06-27 14:53:59 UTC').count
   end
 
   def test_it_can_return_an_empty_array_when_there_is_no_value
