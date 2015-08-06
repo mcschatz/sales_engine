@@ -5,8 +5,9 @@ class MerchantRepository
  attr_accessor :merchants
  attr_reader :filename
 
-  def initialize(merchants)
-    @merchants = merchants
+  def initialize(merchants, engine)
+    @merchants  = merchants
+    @engine     = engine
   end
 
   def add_merchant(row, repository)
@@ -29,14 +30,6 @@ class MerchantRepository
     merchants.find {|merchant| merchant.id == id}
   end
 
-  def find_by_created_at(date)
-    merchants.find {|merchant| merchant.created_at == date}
-  end
-
-  def find_by_updated_at(date)
-    merchants.find {|merchant| merchant.updated_at == date}
-  end
-
   def find_all_by_name(name)
     if name != ''
       merchants.find_all {|merchant| merchant.name == name}
@@ -53,19 +46,7 @@ class MerchantRepository
     end
   end
 
-  def find_all_by_created_at(date)
-    if date != ''
-      merchants.find_all {|merchant| merchant.created_at == date}
-    else
-      []
-    end
-  end
-
-  def find_all_by_updated_at(date)
-    if date != ''
-      merchants.find_all {|merchant| merchant.updated_at == date}
-    else
-      []
-    end
+  def find_items_by_merchant_id(id)
+    @engine.find_items_by_merchant_id(id)
   end
 end
