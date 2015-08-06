@@ -25,12 +25,12 @@ class InvoiceItemRepository
     invoice_items.find {|invoice_item| invoice_item.id == id}
   end
 
-  def find_by_item_id(item_id)
-    invoice_items.find {|invoice_item| invoice_item.item_id == item_id}
+  def find_by_item_id(id)
+    invoice_items.find {|invoice_item| invoice_item.item_id == id}
   end
 
-  def find_by_invoice_id(invoice_id)
-    invoice_items.find {|invoice_item| invoice_item.invoice_id == invoice_id}
+  def find_by_invoice_id(id)
+    invoice_items.find {|invoice_item| invoice_item.invoice_id == id}
   end
 
   def find_by_quantity(quantity)
