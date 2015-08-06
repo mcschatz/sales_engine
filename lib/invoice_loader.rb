@@ -1,8 +1,16 @@
 require 'CSV'
+require_relative 'invoice'
 
-class FileIO
+class InvoiceLoader
 
-  def load_file(filename = 'invoices.csv')
-    CSV.open(filename, headers: true, header_converters: :symbol)
+  def initialize(repository, filename)
+    @repository = repository
+    @filename   = filename
+  end
+
+  def parse_invoices
+    CSV.foreach(@filename, :headers => true, :header_converters => :symbol, :converters => :numeric) do |row|
+      @repository.add_invoice(row, @repository)
+    end
   end
 end
