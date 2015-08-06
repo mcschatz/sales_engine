@@ -22,11 +22,11 @@ class CustomerRepository
   end
 
   def find_by_first_name(name)
-    customers.find {|customer| customer.first_name == name}
+    customers.find {|customer| customer.first_name.downcase == name.downcase}
   end
 
   def find_by_last_name(name)
-    customers.find {|customer| customer.last_name == name}
+    customers.find {|customer| customer.last_name.downcase == name.downcase}
   end
 
   def find_by_id(id)
