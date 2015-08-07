@@ -57,4 +57,8 @@ class CustomerRepository
       []
     end
   end
+
+  def find_invoices_by_customer_id(id)
+    engine.find_all_invoices_by_customer_id(id)
+  end
 end

@@ -38,21 +38,25 @@ class SalesEngine
                   .parse_transactions
   end
 
-  def find_items_by_merchant_id(id)
+  def find_all_items_by_merchant_id(id)
     item_repository.find_all_by_merchant_id(id)
   end
 
-  def find_invoices_by_merchant_id(id)
+  def find_all_invoices_by_merchant_id(id)
     invoice_repository.find_all_by_merchant_id(id)
+  end
+
+  def find_all_invoices_by_customer_id(id)
+    invoice_repository.find_all_by_customer_id(id)
   end
 end
 
 
-engine = SalesEngine.new
-engine.startup
-engine.merchant_repository.inspect
-engine.customer_repository.inspect
-engine.invoice_item_repository.inspect
-engine.invoice_repository.inspect
-engine.item_repository.inspect
-engine.transaction_repository.inspect
+# engine = SalesEngine.new
+# engine.startup
+# engine.merchant_repository.inspect
+# engine.customer_repository.inspect
+# engine.invoice_item_repository.inspect
+# engine.invoice_repository.inspect
+# engine.item_repository.inspect
+# engine.transaction_repository.inspect
