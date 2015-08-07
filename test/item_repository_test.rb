@@ -8,16 +8,16 @@ attr_reader :ir
     item2 = Item.new({id: 2, name: 'Item', description: 'Qui Esse Nihil autem sit odio inventore deleniti.', unit_price: 75107, merchant_id: 1}, self)
     item3 = Item.new({id: '', name: '', description: '', unit_price: '', merchant_id: ''}, self)
     item4 = Item.new({id: 4, name: 'Item', description: 'Qui Esse Nihil autem sit odio inventore deleniti.', unit_price: 75107, merchant_id: 1}, self)
-    @ir = ItemRepository.new([item1, item2, item3, item4])
+    @ir = ItemRepository.new([item1, item2, item3, item4], self)
   end
 
   def test_it_instantiates_an_empty_array
-    sample = ItemRepository.new([])
+    sample = ItemRepository.new([], self)
     assert_equal 0, sample.items.count
   end
 
   def test_it_hold_one_item
-    sample = ItemRepository.new(["hello jeff"])
+    sample = ItemRepository.new(["hello jeff"], self)
     assert_equal 1, sample.items.count
   end
 

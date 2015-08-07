@@ -8,16 +8,16 @@ class InvoiceRepositoryTest < Minitest::Test
     invoice1 = Invoice.new({id: 1, customer_id: 1, merchant_id: 26, status: 'shipped', created_at: '2012-03-25 09:54:09 UTC', updated_at: '2012-03-25 09:54:09 UTC'}, self)
     invoice2 = Invoice.new({id: 2, customer_id: 1, merchant_id: 26, status: 'shipped', created_at: '2012-03-25 09:54:09 UTC', updated_at: '2012-03-25 09:54:09 UTC'}, self)
     invoice3 = Invoice.new({id: '', customer_id: '', merchant_id: '', status: '', created_at: '', updated_at: ''}, self)
-    @iir = InvoiceRepository.new([invoice1, invoice2, invoice3])
+    @iir = InvoiceRepository.new([invoice1, invoice2, invoice3], self)
   end
 
   def test_it_instantiates_an_empty_array
-    sample = InvoiceRepository.new([])
+    sample = InvoiceRepository.new([], self)
     assert_equal 0, sample.invoices.count
   end
 
   def test_it_hold_one_invoice
-    sample = InvoiceRepository.new(["hello jeff"])
+    sample = InvoiceRepository.new(["hello jeff"], self)
     assert_equal 1, sample.invoices.count
   end
 
