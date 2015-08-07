@@ -7,16 +7,16 @@ attr_reader :iir
     invoice_item1 = InvoiceItem.new({id: 1, item_id: 539, invoice_id: 1, quantity: 5, unit_price: 10000, created_at: '2012-03-27 14:54:09 UTC', updated_at: '2012-03-27 14:54:09 UTC'}, self)
     invoice_item2 = InvoiceItem.new({id: 2, item_id: 539, invoice_id: 1, quantity: 5, unit_price: 10000, created_at: '2012-03-27 14:54:09 UTC', updated_at: '2012-03-27 14:54:09 UTC'}, self)
     invoice_item3 = InvoiceItem.new({id: '', item_id: '', invoice_id: '', quantity: '', unit_price: '', created_at: '', updated_at: ''}, self)
-    @iir = InvoiceItemRepository.new([invoice_item1, invoice_item2, invoice_item3])
+    @iir = InvoiceItemRepository.new([invoice_item1, invoice_item2, invoice_item3], self)
   end
 
   def test_it_instantiates_an_empty_array
-    sample = InvoiceItemRepository.new([])
+    sample = InvoiceItemRepository.new([], self)
     assert_equal 0, sample.invoice_items.count
   end
 
   def test_it_hold_one_invoice_item
-    sample = InvoiceItemRepository.new(["hello jeff"])
+    sample = InvoiceItemRepository.new(["hello jeff"], self)
     assert_equal 1, sample.invoice_items.count
   end
 

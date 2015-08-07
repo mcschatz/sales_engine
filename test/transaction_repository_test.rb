@@ -8,16 +8,16 @@ attr_reader :tr
     transaction2 = Transaction.new({id: 2, invoice_id: 2, credit_card_number: 4654405418249621, credit_card_expiration_date: '11/16', result: 'failed', created_at: '2011-09-24 13:59:05 UTC', updated_at: '2013-01-24 13:51:09 UTC'}, self)
     transaction3 = Transaction.new({id: '', invoice_id: '', credit_card_number: '', credit_card_expiration_date: '', result: '', created_at: '', updated_at: ''}, self)
     transaction4 = Transaction.new({id: 4, invoice_id: 2, credit_card_number: 4654405418249621, credit_card_expiration_date: '11/16', result: 'success', created_at: '2011-09-24 13:59:05 UTC', updated_at: '2013-01-24 13:51:09 UTC'}, self)
-    @tr = TransactionRepository.new([transaction1, transaction2, transaction3, transaction4])
+    @tr = TransactionRepository.new([transaction1, transaction2, transaction3, transaction4], self)
   end
 
   def test_it_instantiates_an_empty_array
-    sample = TransactionRepository.new([])
+    sample = TransactionRepository.new([], self)
     assert_equal 0, sample.transactions.count
   end
 
   def test_it_hold_one_transaction
-    sample = TransactionRepository.new(["hello jeff"])
+    sample = TransactionRepository.new(["hello jeff"], self)
     assert_equal 1, sample.transactions.count
   end
 

@@ -7,16 +7,16 @@ attr_reader :cr
     customer1 = Customer.new({id: 1, first_name: 'Timothy', last_name: 'Bigsby', created_at: '2012-02-11 13:43:29 UTC', updated_at: '2011-06-27 14:53:59 UTC'}, self)
     customer2 = Customer.new({id: 2, first_name: 'Timothy', last_name: 'Bigsby', created_at: '2012-02-11 13:43:29 UTC', updated_at: '2011-06-27 14:53:59 UTC'}, self)
     customer3 = Customer.new({id: '', first_name: '', last_name: '', created_at: '', updated_at: ''}, self)
-    @cr = CustomerRepository.new([customer1, customer2, customer3])
+    @cr = CustomerRepository.new([customer1, customer2, customer3], self)
   end
 
   def test_it_instantiates_an_empty_array
-    sample = CustomerRepository.new([])
+    sample = CustomerRepository.new([], self)
     assert_equal 0, sample.customers.count
   end
 
   def test_it_hold_one_customer
-    sample = CustomerRepository.new(["hello jeff"])
+    sample = CustomerRepository.new(["hello jeff"], self)
     assert_equal 1, sample.customers.count
   end
 
