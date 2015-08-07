@@ -3,10 +3,11 @@ require_relative 'item'
 
 class ItemRepository
  attr_accessor :items
- attr_reader   :filename
+ attr_reader   :filename, :engine
 
-  def initialize(items)
-    @items = items
+  def initialize(items, engine)
+    @items  = items
+    @engine = engine
   end
 
   def add_item(row, repository)

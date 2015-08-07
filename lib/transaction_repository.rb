@@ -5,7 +5,7 @@ class TransactionRepository
  attr_accessor :transactions
  attr_reader   :filename
 
-  def initialize(transactions)
+  def initialize(transactions, engine)
     @transactions = transactions
   end
 

@@ -3,7 +3,7 @@ require_relative 'merchant'
 
 class MerchantRepository
  attr_accessor :merchants
- attr_reader :filename
+ attr_reader :filename, :engine
 
   def initialize(merchants, engine)
     @merchants  = merchants
@@ -47,6 +47,10 @@ class MerchantRepository
   end
 
   def find_items_by_merchant_id(id)
-    @engine.find_items_by_merchant_id(id)
+    engine.find_items_by_merchant_id(id)
+  end
+
+  def find_invoices_by_merchant_id(id)
+    engine.find_invoices_by_merchant_id(id)
   end
 end

@@ -3,10 +3,11 @@ require_relative 'invoice'
 
 class InvoiceRepository
  attr_accessor :invoices
- attr_reader :filename
+ attr_reader :filename, :engine
 
-  def initialize(invoices)
+  def initialize(invoices, engine)
     @invoices = invoices
+    @engine   = engine
   end
 
   def add_invoice(row, repository)

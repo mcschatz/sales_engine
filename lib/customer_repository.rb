@@ -3,10 +3,11 @@ require_relative 'customer'
 
 class CustomerRepository
  attr_accessor :customers
- attr_reader :filename
+ attr_reader :filename, :engine
 
-  def initialize(customers)
+  def initialize(customers, engine)
     @customers = customers
+    @engine    = engine
   end
 
   def add_customer(row, repository)
