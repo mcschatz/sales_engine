@@ -15,6 +15,4 @@ attr_reader :cr
     invoices    = customer.invoices
     assert_equal 8, invoices.count
   end
-
-  #What happens if we ask for something that is not there
 end
