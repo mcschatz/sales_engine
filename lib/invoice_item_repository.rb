@@ -81,4 +81,12 @@ class InvoiceItemRepository
       []
     end
   end
+
+  def find_invoice_by_id(id)
+    engine.find_invoice_by_id(id)
+  end
+
+  def find_item_by_id(id)
+    engine.find_item_by_id(id)
+  end
 end

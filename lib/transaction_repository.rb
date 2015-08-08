@@ -70,7 +70,7 @@ class TransactionRepository
     end
   end
 
-  def find_invoices_by_id(id)
-    engine.find_all_invoices_by_id(id)
+  def find_invoice_by_id(id)
+    engine.find_invoice_by_id(id)
   end
 end
