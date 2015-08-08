@@ -20,4 +20,20 @@ class Merchant
   def invoices
     repository.find_invoices_by_merchant_id(id)
   end
+
+  def invoice_items
+    ids = invoices.map do |invoice|
+      invoice.id
+    end
+    ids.map do |id|
+      repository.find_invoice_items_by_id(id)
+    end
+  end
+
+  def revenue
+    revenue = invoice_items.map.with_index do |item, index|
+      (item[index].quantity) * (item[index].unit_price)
+    end
+    revenue.reduce
+  end
 end
