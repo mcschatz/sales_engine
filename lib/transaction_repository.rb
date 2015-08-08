@@ -1,5 +1,6 @@
 require_relative 'transaction_loader'
 require_relative 'transaction'
+require 'pry'
 
 class TransactionRepository
  attr_accessor :transactions
@@ -72,5 +73,14 @@ class TransactionRepository
 
   def find_invoice_by_id(id)
     engine.find_invoice_by_id(id)
+  end
+
+  def successful_transaction(id)
+    transaction = find_by_invoice_id(id)
+    if transaction.result == "success"
+      transaction.invoice_id
+    else
+      false
+    end
   end
 end

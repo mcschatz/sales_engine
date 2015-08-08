@@ -32,4 +32,9 @@ attr_reader :mr
     merchant = mr.find_by_id(10)
     assert_equal 400, merchant.revenue
   end
+
+  def test_it_results_zero_when_transactions_failed
+    merchant = mr.find_by_id(9)
+    assert_equal 0, merchant.revenue
+  end
 end

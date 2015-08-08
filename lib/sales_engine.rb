@@ -4,7 +4,7 @@ require_relative 'invoice_item_repository'
 require_relative 'invoice_repository'
 require_relative 'item_repository'
 require_relative 'transaction_repository'
-
+require 'pry'
 class SalesEngine
   attr_reader :merchant_repository,
               :customer_repository,
@@ -80,6 +80,10 @@ class SalesEngine
 
   def find_customer_by_id(id)
     customer_repository.find_by_id(id)
+  end
+
+  def successful_invoice_items(id)
+    transaction_repository.successful_transaction(id)
   end
 end
 

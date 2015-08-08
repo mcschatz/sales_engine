@@ -31,9 +31,10 @@ class Merchant
   end
 
   def revenue
-    revenue = invoice_items.map.with_index do |item, index|
-      (item[index].quantity) * (item[index].unit_price)
+    invoice_id = repository.successful_invoice_items(id)
+    ii = repository.find_invoice_items_by_id(invoice_id)
+    ii.reduce(0) do |revenue, ii|
+      revenue += (ii.quantity * ii.unit_price)
     end
-    revenue.reduce
   end
 end
