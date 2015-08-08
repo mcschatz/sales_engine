@@ -69,4 +69,12 @@ class InvoiceRepository
       []
     end
   end
+
+  def find_transactions_by_invoice_id(id)
+    engine.find_all_transactions_by_invoice_id(id)
+  end
+
+  def find_invoice_items_by_invoice_id(id)
+    engine.find_all_invoice_items_by_invoice_id(id)
+  end
 end
