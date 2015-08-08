@@ -77,4 +77,8 @@ class InvoiceRepository
   def find_invoice_items_by_invoice_id(id)
     engine.find_all_invoice_items_by_invoice_id(id)
   end
+
+  def find_items_by_invoice_id(id)
+    engine.find_items_by_invoice_id(id)
+  end
 end
