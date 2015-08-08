@@ -3,10 +3,11 @@ require_relative 'transaction'
 
 class TransactionRepository
  attr_accessor :transactions
- attr_reader   :filename
+ attr_reader   :filename, :engine
 
   def initialize(transactions, engine)
     @transactions = transactions
+    @engine       = engine
   end
 
   def add_transaction(row, repository)
@@ -67,5 +68,9 @@ class TransactionRepository
     else
       []
     end
+  end
+
+  def find_invoices_by_id(id)
+    engine.find_all_invoices_by_id(id)
   end
 end
