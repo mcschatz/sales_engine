@@ -34,4 +34,10 @@ attr_reader :ir
     invoice1 = invoice.merchant.name
     assert_equal 'Person A', invoice1
   end
+
+  def test_it_can_find_a_customers_invoice
+    invoice = ir.find_by_id(1)
+    invoice1 = invoice.customer.first_name
+    assert_equal 'Joey', invoice1
+  end
 end

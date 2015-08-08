@@ -29,6 +29,7 @@ class Invoice
   end
 
   def customer #an instance of customer associated with this object
+    repository.find_customer_by_id(id)
   end
 
   def merchant #an instance of merchant associated wit this object
