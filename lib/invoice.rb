@@ -1,3 +1,4 @@
+require 'pry'
 class Invoice
   attr_reader :id,
               :customer_id,
@@ -17,22 +18,28 @@ class Invoice
     @repository  = repository
   end
 
-  def transactions #a collection of transactions
+  def transactions
     repository.find_transactions_by_invoice_id(id)
   end
 
-  def invoice_items #a collections of associated invoiceitem objects
+  def invoice_items
     repository.find_invoice_items_by_invoice_id(id)
   end
 
-  def items #a collection of associated items by way of invoice items
+  def items
+    ids = invoice_items.map do |item|
+      item.id
+    end
+    ids.map do |id|
+      repository.find_items_by_invoice_id(id)
+    end
   end
 
-  def customer #an instance of customer associated with this object
+  def customer
     repository.find_customer_by_id(id)
   end
 
-  def merchant #an instance of merchant associated wit this object
+  def merchant
     repository.find_merchant_by_id(id)
   end
 end
