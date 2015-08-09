@@ -19,7 +19,7 @@ attr_reader :mr
   def test_it_can_find_a_merchants_invoices
     merchant = mr.find_by_id(1)
     invoices    = merchant.invoices
-    assert_equal 2, invoices.count
+    assert_equal 1, invoices.count
   end
 
   def test_it_can_find_a_merchants_invoice_items
@@ -37,4 +37,21 @@ attr_reader :mr
     merchant = mr.find_by_id(9)
     assert_equal 0, merchant.revenue
   end
+
+  def test_it_can_find_the_merchant_with_the_highest_revenue
+    assert_equal [0, 50, 90, 120, 240, 280, 300, 350, 400, 480], mr.most_revenue(1)
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -65,4 +65,11 @@ class MerchantRepository
   def successful_invoice_items(id)
     engine.successful_invoice_items(id)
   end
+
+  def most_revenue(x = 0)
+    results = merchants.sort_by do |merchant|
+      merchant.revenue
+    end
+    results.reverse[0..(x-1)].map(&:id)
+  end
 end
