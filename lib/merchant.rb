@@ -21,15 +21,6 @@ class Merchant
     repository.find_invoices_by_merchant_id(id)
   end
 
-  def invoice_items
-    ids = invoices.map do |invoice|
-      invoice.id
-    end
-    ids.map do |id|
-      repository.find_invoice_items_by_id(id)
-    end
-  end
-
   def revenue
     invoice_id = repository.successful_transactions(id)
     ii = repository.find_invoice_items_by_id(invoice_id)

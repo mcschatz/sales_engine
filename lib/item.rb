@@ -26,4 +26,8 @@ class Item
   def invoice_items
     repository.find_invoice_items_by_id(id)
   end
+
+  def most_items(x)
+
+  end
 end
