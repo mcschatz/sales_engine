@@ -82,7 +82,7 @@ class SalesEngine
     customer_repository.find_by_id(id)
   end
 
-  def successful_invoice_items(id)
+  def successful_transactions(id)
     transaction_repository.successful_transaction(id)
   end
 end

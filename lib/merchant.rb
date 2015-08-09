@@ -31,7 +31,7 @@ class Merchant
   end
 
   def revenue
-    invoice_id = repository.successful_invoice_items(id)
+    invoice_id = repository.successful_transactions(id)
     ii = repository.find_invoice_items_by_id(invoice_id)
     ii.reduce(0) do |revenue, ii|
       revenue += (ii.quantity * ii.unit_price)

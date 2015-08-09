@@ -52,6 +52,7 @@ class TransactionRepository
       transactions.find_all {|transaction| transaction.invoice_id == id}
     else
       []
+
     end
   end
 
