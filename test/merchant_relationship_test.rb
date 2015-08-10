@@ -13,13 +13,13 @@ attr_reader :mr
   def test_it_can_find_a_merchants_items
     merchant = mr.find_by_id(1)
     items    = merchant.items
-    assert_equal 2, items.count
+    assert_equal 1, items.count
   end
 
   def test_it_can_find_a_merchants_invoices
     merchant = mr.find_by_id(1)
     invoices    = merchant.invoices
-    assert_equal 2, invoices.count
+    assert_equal 1, invoices.count
   end
 
   def test_it_can_return_a_merchants_total_revenue
@@ -31,4 +31,26 @@ attr_reader :mr
     merchant = mr.find_by_id(9)
     assert_equal 0, merchant.revenue
   end
+
+  def test_it_can_find_the_merchant_with_the_highest_revenue
+    assert_equal [8], mr.most_revenue(1)
+  end
+
+  def test_it_can_find_the_merchant_with_the_most_items_sold
+    skip
+    assert_equal 2, mr.most_items
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

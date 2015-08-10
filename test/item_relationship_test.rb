@@ -19,6 +19,6 @@ attr_reader :ir
   def test_it_can_find_an_items_invoice_items
     item = ir.find_by_id(1)
     invoice_item = item.invoice_items
-    assert_equal 2, invoice_item.count
+    assert_equal 1, invoice_item.count
   end
 end

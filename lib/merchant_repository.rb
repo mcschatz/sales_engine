@@ -1,5 +1,6 @@
 require_relative 'merchant_loader'
 require_relative 'merchant'
+require 'pry'
 
 class MerchantRepository
  attr_accessor :merchants
@@ -65,4 +66,26 @@ class MerchantRepository
   def successful_transactions(id)
     engine.successful_transactions(id)
   end
+
+  def most_revenue(x = 0)
+    results = merchants.sort_by do |merchant|
+      merchant.revenue
+    end
+    results.reverse[0..(x-1)].map(&:id)
+  end
+
+  def most_items
+    merchants.each do |merchant|
+      merchant.invoice_items
+    end
+  end
 end
+
+
+
+
+
+
+
+
+

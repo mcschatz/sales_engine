@@ -83,7 +83,7 @@ class SalesEngine
   end
 
   def successful_transactions(id)
-    transaction_repository.successful_transaction(id)
+    transaction_repository.successful_transactions(id)
   end
 end
 
