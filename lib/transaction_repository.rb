@@ -75,7 +75,7 @@ class TransactionRepository
     engine.find_invoice_by_id(id)
   end
 
-  def successful_transaction(id)
+  def successful_transactions(id)
     transaction = find_by_invoice_id(id)
     if transaction.result == "success"
       transaction.invoice_id
