@@ -83,7 +83,7 @@ class MerchantRepository
 
   def revenue(date)
    merchants.map do |merchant|
-      merchant.total_revenue(date)
+      merchant.revenue(date)
     end.reduce(:+)
   end
 end
