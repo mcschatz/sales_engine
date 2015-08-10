@@ -37,8 +37,11 @@ attr_reader :mr
   end
 
   def test_it_can_find_the_merchant_with_the_most_items_sold
-    skip
-    assert_equal 2, mr.most_items
+    assert_equal [2], mr.most_items(1)
+  end
+
+  def test_it_can_find_the_total_revenue_on_a_specific_date
+    assert_equal 2310, mr.revenue("2012-03-27 14:54:09 UTC")
   end
 end
 
