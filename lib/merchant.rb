@@ -21,45 +21,33 @@ class Merchant
     repository.find_invoices_by_merchant_id(id)
   end
 
-  def successful_invoice_items
-    invoice_id = repository.successful_transactions(id)
-    repository.find_invoice_items_by_id(invoice_id)
+  def successful_invoices
+    invoices.select do |invoice|
+      invoice.successful_transactions
+    end
   end
 
   def revenue(date = nil)
     if date == nil
-      successful_invoice_items.reduce(0) do |revenue, ii|
-        revenue += (ii.quantity * ii.unit_price)
-      end
+      successful_invoices.map(&:revenue).reduce(0, :+)
     else
-      successful_item_by_date(date).reduce(0) do |revenue, ii|
-        revenue += (ii.quantity * ii.unit_price)
-      end
+      successful_item_by_date(date).flatten.reduce(0, :+)
     end
   end
 
   def items_sold
-    successful_invoice_items.map do |item|
-      item.quantity
-    end
+    successful_invoices.map(&:items_sold)
   end
 
   def successful_item_by_date(date)
-    successful_invoice_items.map do |item|
-      if item.created_at == date
-        item
-      end
+    successful_invoices.map do |invoice|
+      invoice.date(date).map(&:revenue)
+    end
+  end
+
+  def favorite_customer
+    successful_invoices.map do |item|
+      item.customer_id
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-

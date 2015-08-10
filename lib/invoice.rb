@@ -42,4 +42,32 @@ class Invoice
   def merchant
     repository.find_merchant_by_id(id)
   end
+
+  def successful_transactions
+    transactions.any?(&:successful?)
+  end
+
+  def revenue
+    invoice_items.map(&:revenue).reduce(0, :+)
+  end
+
+  def items_sold
+    invoice_items.map do |item|
+      item.quantity
+    end
+  end
+
+  # def frequent_customer
+  #   customer_id.map do |id|
+  #     id.
+
+
+
+  # end
+
+  def date(date = nil)
+    invoice_items.select do |item|
+      item.created_at == date
+    end
+  end
 end

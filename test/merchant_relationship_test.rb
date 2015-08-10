@@ -37,16 +37,21 @@ attr_reader :mr
   end
 
   def test_it_can_find_the_merchant_with_the_most_items_sold
-    assert_equal [2], mr.most_items(1)
+    assert_equal [11], mr.most_items(1)
   end
 
   def test_it_can_find_the_total_revenue_on_a_specific_date
-    assert_equal 2310, mr.revenue("2012-03-27 14:54:09 UTC")
+    assert_equal 2510, mr.revenue("2012-03-27 14:54:09 UTC")
   end
 
   def test_it_can_find_the_total_merchant_revenue_on_a_specific_date
     merchant = mr.find_by_id(8)
     assert_equal 480, merchant.revenue("2012-03-27 14:54:09 UTC")
+  end
+
+  def test_it_can_find_the_merchants_favorite_customer
+    merchant = mr.find_by_id(11)
+    assert_equal 11, merchant.favorite_customer
   end
 end
 

@@ -63,8 +63,8 @@ class MerchantRepository
     engine.find_transactions_by_invoice_id(id)
   end
 
-  def successful_transactions(id)
-    engine.successful_transactions(id)
+  def successful_transactions
+    engine.successful_transactions
   end
 
   def most_revenue(x = 0)
