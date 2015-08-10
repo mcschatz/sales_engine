@@ -18,4 +18,14 @@ class Customer
   def invoices
     repository.find_invoices_by_customer_id(id)
   end
+
+  def transactions
+    invoices.map do |invoice|
+      invoice.transactions
+    end.flatten
+  end
+
+  def favorite_merchant
+  end
 end
+
