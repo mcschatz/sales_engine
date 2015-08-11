@@ -32,4 +32,10 @@ class InvoiceItem
   def revenue
     quantity * unit_price
   end
+
+  def successful_transactions
+    invoice.map do |i|
+      i.successful_transactions
+    end
+  end
 end

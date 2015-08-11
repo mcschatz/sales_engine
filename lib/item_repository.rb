@@ -35,7 +35,7 @@ class ItemRepository
     items.find {|item| item.description.downcase == description.downcase}
   end
 
-   def find_by_unit_price(price)
+  def find_by_unit_price(price)
     items.find {|item| item.unit_price == price}
   end
 
@@ -91,4 +91,17 @@ class ItemRepository
     engine.find_all_invoice_items_by_item_id(id)
   end
 
+  def most_revenue(x = 0)
+    results = items.sort_by do |item|
+      item.revenue
+    end
+    results.reverse[0..(x-1)].map(&:id)
+  end
+
+  def most_items(x = 0)
+    results = items.sort_by do |items|
+      items.items_sold
+    end
+    results.reverse[0..(x-1)].map(&:id)
+  end
 end

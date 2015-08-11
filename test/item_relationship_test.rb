@@ -21,4 +21,22 @@ attr_reader :ir
     invoice_item = item.invoice_items
     assert_equal 1, invoice_item.count
   end
+
+  def test_it_can_find_most_revenue_by_items
+    assert_equal [8], ir.most_revenue(1)
+  end
+
+  def test_it_can_find_successful_transactions
+    item     = ir.find_by_id(1)
+    assert_equal 1, item.successful_transactions.count
+  end
+
+  def test_it_can_find_the_top_item_instances_ranked_by_total_number_sold
+    assert_equal [2], ir.most_items(1)
+  end
+
+  def test_it_can_find_the_date_of_the_best_day
+    item     = ir.find_by_id(2)
+    assert_equal ('2012-03-12 05:54:09 UTC'), item.best_day
+  end
 end
