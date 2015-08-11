@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 class InvoiceItem
   attr_reader :id,
               :item_id,
@@ -13,7 +15,7 @@ class InvoiceItem
     @item_id    = row[:item_id]
     @invoice_id = row[:invoice_id]
     @quantity   = row[:quantity]
-    @unit_price = row[:unit_price]
+    @unit_price = BigDecimal.new(row[:unit_price])/100
     @created_at = row[:created_at]
     @updated_at = row[:updated_at]
     @repository = repository
@@ -30,6 +32,4 @@ class InvoiceItem
   def revenue
     quantity * unit_price
   end
-
-
 end

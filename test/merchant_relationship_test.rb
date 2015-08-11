@@ -24,7 +24,7 @@ attr_reader :mr
 
   def test_it_can_return_a_merchants_total_revenue
     merchant = mr.find_by_id(10)
-    assert_equal 400, merchant.revenue
+    assert_equal BigDecimal.new('4.0'), merchant.revenue
   end
 
   def test_it_results_zero_when_transactions_failed
@@ -41,12 +41,12 @@ attr_reader :mr
   end
 
   def test_it_can_find_the_total_revenue_on_a_specific_date
-    assert_equal 2510, mr.revenue("2012-03-27 14:54:09 UTC")
+    assert_equal BigDecimal.new('25.10'), mr.revenue("2012-03-27 14:54:09 UTC")
   end
 
   def test_it_can_find_the_total_merchant_revenue_on_a_specific_date
     merchant = mr.find_by_id(8)
-    assert_equal 480, merchant.revenue("2012-03-27 14:54:09 UTC")
+    assert_equal BigDecimal.new('4.80'), merchant.revenue("2012-03-27 14:54:09 UTC")
   end
 
   def test_it_can_find_the_merchants_favorite_customer

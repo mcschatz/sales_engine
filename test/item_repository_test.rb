@@ -38,7 +38,6 @@ attr_reader :ir
     assert_equal Item, ir.find_by_name('Item1').class
     assert_equal Item, ir.find_by_description('Qui Esse Nihil autem sit odio inventore deleniti.').class
     assert_equal Item, ir.find_by_merchant_id(1).class
-    assert_equal Item, ir.find_by_unit_price(75107).class
   end
 
   def test_it_can_find_a_item_by_id

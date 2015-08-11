@@ -1,5 +1,6 @@
 require_relative 'item_loader'
 require_relative 'item'
+require 'bigdecimal'
 
 class ItemRepository
  attr_accessor :items
@@ -68,7 +69,7 @@ class ItemRepository
 
   def find_all_by_unit_price(price)
     if price != ''
-      items.find_all {|item| item.unit_price == price}
+      items.find_all {|item| item.unit_price == price }
     else
       []
     end
