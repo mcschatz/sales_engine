@@ -37,7 +37,6 @@ attr_reader :iir
     assert_equal InvoiceItem, iir.find_by_item_id(539).class
     assert_equal InvoiceItem, iir.find_by_invoice_id(1).class
     assert_equal InvoiceItem, iir.find_by_quantity(5).class
-    assert_equal InvoiceItem, iir.find_by_unit_price(10000).class
   end
 
   def test_it_can_find_an_invoice_item_by_id
@@ -59,7 +58,7 @@ attr_reader :iir
   end
 
   def test_it_can_find_an_invoice_item_by_unit_price
-    assert_equal 10000, iir.find_by_unit_price(10000).unit_price
+    assert_equal BigDecimal.new('10.00'), iir.find_by_unit_price(10)
   end
 
   def test_it_can_find_all_invoice_items_by_id

@@ -46,8 +46,13 @@ class Merchant
   end
 
   def favorite_customer
-    successful_invoices.map do |item|
-      item.customer_id
+    id_count = Hash.new(0)
+    successful_invoices.map do |invoice|
+     id_count[invoice.customer_id] += 1
     end
+    id_count.key(id_count.values.max)
+  end
+
+  def customers_with_pending_invoices
   end
 end

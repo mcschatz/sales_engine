@@ -22,8 +22,7 @@ attr_reader :cr
   end
 
   def test_it_can_find_a_customers_favorite_merchant
-    skip
-    customer = cr.find_by_id(3)
-    assert_equal 1, customer.favorite_merchant
+    customer = cr.find_by_id(11)
+    assert_equal 11, customer.favorite_merchant
   end
 end

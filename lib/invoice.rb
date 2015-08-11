@@ -57,14 +57,6 @@ class Invoice
     end
   end
 
-  # def frequent_customer
-  #   customer_id.map do |id|
-  #     id.
-
-
-
-  # end
-
   def date(date = nil)
     invoice_items.select do |item|
       item.created_at == date
