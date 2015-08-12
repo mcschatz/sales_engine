@@ -1,5 +1,6 @@
 require_relative 'test_helper'
 require './lib/sales_engine'
+require 'date'
 
 class MerchantRelationshipTest < Minitest::Test
 attr_reader :mr
@@ -41,29 +42,22 @@ attr_reader :mr
   end
 
   def test_it_can_find_the_total_revenue_on_a_specific_date
-    assert_equal BigDecimal.new('25.10'), mr.revenue("2012-03-27 14:54:09 UTC")
+    date = Date.parse("2012-03-06 14:54:09 UTC")
+    assert_equal BigDecimal.new('6.0'), mr.revenue(date)
   end
 
   def test_it_can_find_the_total_merchant_revenue_on_a_specific_date
     merchant = mr.find_by_id(8)
-    assert_equal BigDecimal.new('4.80'), merchant.revenue("2012-03-27 14:54:09 UTC")
+    date = Date.parse("2012-03-13 14:54:09 UTC")
+    assert_equal BigDecimal.new('4.80'), merchant.revenue(date)
   end
 
   def test_it_can_find_the_merchants_favorite_customer
     merchant = mr.find_by_id(11)
     assert_equal 'Timothy', merchant.favorite_customer.first_name
   end
+
+  def test_it_can_find_all_revenue
+    assert_equal BigDecimal.new('25.10'), mr.revenue
+  end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-

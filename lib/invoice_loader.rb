@@ -8,7 +8,7 @@ class InvoiceLoader
     @filename   = filename
   end
 
-  def parse_invoices
+  def parse
     CSV.foreach(@filename, :headers => true, :header_converters => :symbol, :converters => :numeric) do |row|
       @repository.add_invoice(row, @repository)
     end

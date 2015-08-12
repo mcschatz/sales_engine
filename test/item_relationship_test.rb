@@ -37,6 +37,6 @@ attr_reader :ir
 
   def test_it_can_find_the_date_of_the_best_day
     item     = ir.find_by_id(2)
-    assert_equal ('2012-03-12 05:54:09 UTC'), item.best_day
+    assert_equal ('2012-03-12'), item.best_day
   end
 end

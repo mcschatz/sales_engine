@@ -8,7 +8,7 @@ class CustomerLoader
     @filename   = filename
   end
 
-  def parse_customers
+  def parse
     CSV.foreach(@filename, :headers => true, :header_converters => :symbol, :converters => :numeric) do |row|
       @repository.add_customer(row, @repository)
     end

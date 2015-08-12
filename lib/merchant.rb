@@ -22,14 +22,14 @@ class Merchant
   end
 
   def successful_invoices
-    invoices.map do |invoice|
+    invoices.select do |invoice|
       invoice.successful_transactions
     end
   end
 
-  def revenue(date)
-    if date
-      results = successful_invoices.find_all {|invoice| invoice.on_date?(date)}
+  def revenue(date = nil)
+    if date != nil
+      results = successful_invoices.select {|invoice| invoice.on_date?(date)}
       results.map(&:revenue).reduce(0, :+)
     else
       successful_invoices.map(&:revenue).reduce(0, :+)

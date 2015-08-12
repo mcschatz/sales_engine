@@ -80,7 +80,7 @@ class MerchantRepository
     results.reverse[0..(x-1)].map(&:id)
   end
 
-  def revenue(date)
+  def revenue(date = nil)
     merchants.map do |merchant|
       merchant.revenue(date)
     end.reduce(:+)

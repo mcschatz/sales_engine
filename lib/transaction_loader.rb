@@ -8,7 +8,7 @@ class TransactionLoader
     @filename   = filename
   end
 
-  def parse_transactions
+  def parse
     CSV.foreach(@filename, :headers => true, :header_converters => :symbol, :converters => :numeric) do |row|
       @repository.add_transaction(row, @repository)
     end

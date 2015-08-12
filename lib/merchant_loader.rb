@@ -8,7 +8,7 @@ class MerchantLoader
     @filename   = filename
   end
 
-  def parse_merchants
+  def parse
     CSV.foreach(@filename, :headers => true, :header_converters => :symbol, :converters => :numeric) do |row|
       @repository.add_merchant(row, @repository)
     end
