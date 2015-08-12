@@ -6,8 +6,8 @@ class CustomerRepository
  attr_reader :filename, :engine
 
   def initialize(customers, engine)
-    @customers = customers
-    @engine    = engine
+    @customers ||= customers
+    @engine    ||= engine
   end
 
   def add_customer(row, repository)
@@ -64,5 +64,9 @@ class CustomerRepository
 
   def find_all_transactions_by_invoice_id(id)
     engine.find_all_transactions_by_invoice_id(id)
+  end
+
+  def inspect
+    "#<#{self.class} #{@customers.size} rows>"
   end
 end

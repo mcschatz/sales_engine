@@ -32,6 +32,15 @@ class Customer
   end
 
   def favorite_merchant
+    merchants = successful_invoices.map do |invoice|
+      invoice.merchant
+    end
+    merchants.find do |merchant|
+      merchant.id == find_merchant
+    end
+  end
+
+  def find_merchant
     id_count = Hash.new(0)
     successful_invoices.map do |invoice|
      id_count[invoice.merchant_id] += 1

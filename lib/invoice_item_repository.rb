@@ -6,8 +6,8 @@ class InvoiceItemRepository
  attr_reader :filename, :engine
 
   def initialize(invoice_items, engine)
-    @invoice_items = invoice_items
-    @engine        = engine
+    @invoice_items ||= invoice_items
+    @engine        ||= engine
   end
 
   def add_invoice_item(row, repository)
@@ -58,9 +58,9 @@ class InvoiceItemRepository
     end
   end
 
-  def find_all_by_invoice_id(invoice_id)
-    if invoice_id != ''
-      invoice_items.find_all {|invoice_item| invoice_item.invoice_id == invoice_id}
+  def find_all_by_invoice_id(id)
+    if id != ''
+      invoice_items.find_all {|invoice_item| invoice_item.invoice_id == id}
     else
       []
     end
@@ -74,19 +74,23 @@ class InvoiceItemRepository
     end
   end
 
-  def find_all_by_unit_price(unit_price)
-    if unit_price != ''
-      invoice_items.find_all {|invoice_item| invoice_item.unit_price == unit_price}
+  def find_all_by_unit_price(price)
+    if price != ''
+      invoice_items.find_all {|invoice_item| invoice_item.unit_price == price}
     else
       []
     end
   end
 
-  def find_invoice_by_id(id)
+  def find_invoice_by_invoice_id(id)
     engine.find_invoice_by_id(id)
   end
 
   def find_item_by_id(id)
     engine.find_item_by_id(id)
+  end
+
+  def inspect
+    "#<#{self.class} #{@invoice_items.size} rows>"
   end
 end

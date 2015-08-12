@@ -23,6 +23,6 @@ attr_reader :cr
 
   def test_it_can_find_a_customers_favorite_merchant
     customer = cr.find_by_id(11)
-    assert_equal 11, customer.favorite_merchant
+    assert_equal 'Person K', customer.favorite_merchant.name
   end
 end

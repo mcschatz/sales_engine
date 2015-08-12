@@ -51,7 +51,7 @@ attr_reader :mr
 
   def test_it_can_find_the_merchants_favorite_customer
     merchant = mr.find_by_id(11)
-    assert_equal 11, merchant.favorite_customer
+    assert_equal 'Timothy', merchant.favorite_customer.first_name
   end
 end
 

@@ -6,8 +6,8 @@ class InvoiceRepository
  attr_reader :filename, :engine
 
   def initialize(invoices, engine)
-    @invoices = invoices
-    @engine   = engine
+    @invoices ||= invoices
+    @engine   ||= engine
   end
 
   def add_invoice(row, repository)
@@ -78,15 +78,19 @@ class InvoiceRepository
     engine.find_all_invoice_items_by_invoice_id(id)
   end
 
-  def find_items_by_invoice_id(id)
-    engine.find_items_by_invoice_id(id)
+  def find_items_by_item_id(id)
+    engine.find_item_by_id(id)
   end
 
-  def find_customer_by_id(id)
+  def find_customer_by_customer_id(id)
     engine.find_customer_by_id(id)
   end
 
-  def find_merchant_by_id(id)
+  def find_merchant_by_merchant_id(id)
     engine.find_merchant_by_id(id)
+  end
+
+  def inspect
+    "#<#{self.class} #{@invoices.size} rows>"
   end
 end

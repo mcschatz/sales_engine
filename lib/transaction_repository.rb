@@ -6,8 +6,8 @@ class TransactionRepository
  attr_reader   :filename, :engine
 
   def initialize(transactions, engine)
-    @transactions = transactions
-    @engine       = engine
+    @transactions ||= transactions
+    @engine       ||= engine
   end
 
   def add_transaction(row, repository)
@@ -73,5 +73,9 @@ class TransactionRepository
 
   def find_invoice_by_id(id)
     engine.find_invoice_by_id(id)
+  end
+
+  def inspect
+    "#<#{self.class} #{@transactions.size} rows>"
   end
 end

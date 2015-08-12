@@ -7,8 +7,8 @@ class ItemRepository
  attr_reader   :filename, :engine
 
   def initialize(items, engine)
-    @items  = items
-    @engine = engine
+    @items  ||= items
+    @engine ||= engine
   end
 
   def add_item(row, repository)
@@ -103,5 +103,9 @@ class ItemRepository
       items.items_sold
     end
     results.reverse[0..(x-1)].map(&:id)
+  end
+
+  def inspect
+    "#<#{self.class} #{@items.size} rows>"
   end
 end

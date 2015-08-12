@@ -1,4 +1,5 @@
-require 'pry'
+require 'date'
+
 class Invoice
   attr_reader :id,
               :customer_id,
@@ -13,7 +14,7 @@ class Invoice
     @customer_id = row[:customer_id]
     @merchant_id = row[:merchant_id]
     @status      = row[:status]
-    @created_at  = row[:created_at]
+    @created_at  = Date.parse(row[:created_at]).strftime("%Y-%m-%d")
     @updated_at  = row[:updated_at]
     @repository  = repository
   end
@@ -27,20 +28,20 @@ class Invoice
   end
 
   def items
-    ids = invoice_items.map do |item|
-      item.id
+    item_ids = invoice_items.map do |item|
+      item.item_id
     end
-    ids.map do |id|
-      repository.find_items_by_invoice_id(id)
+    item_ids.map do |id|
+      repository.find_items_by_item_id(id)
     end
   end
 
   def customer
-    repository.find_customer_by_id(id)
+    repository.find_customer_by_customer_id(customer_id)
   end
 
   def merchant
-    repository.find_merchant_by_id(id)
+    repository.find_merchant_by_merchant_id(merchant_id)
   end
 
   def successful_transactions
@@ -49,6 +50,7 @@ class Invoice
 
   def revenue
     invoice_items.map(&:revenue).reduce(0, :+)
+    #require 'pry'; binding.pry
   end
 
   def items_sold
@@ -57,9 +59,12 @@ class Invoice
     end
   end
 
-  def date(date = nil)
-    invoice_items.select do |item|
-      item.created_at == date
-    end
+  def convert_created_at
+    Date.parse(created_at).strftime("%Y-%m-%d")
+  end
+
+  def on_date?(date)
+    datum = date.strftime("%Y-%m-%d")
+    convert_created_at == datum
   end
 end

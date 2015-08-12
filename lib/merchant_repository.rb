@@ -1,14 +1,13 @@
 require_relative 'merchant_loader'
 require_relative 'merchant'
-require 'pry'
 
 class MerchantRepository
  attr_accessor :merchants
  attr_reader :filename, :engine
 
   def initialize(merchants, engine)
-    @merchants  = merchants
-    @engine     = engine
+    @merchants  ||= merchants
+    @engine     ||= engine
   end
 
   def add_merchant(row, repository)
@@ -82,9 +81,13 @@ class MerchantRepository
   end
 
   def revenue(date)
-   merchants.map do |merchant|
+    merchants.map do |merchant|
       merchant.revenue(date)
     end.reduce(:+)
+  end
+
+  def inspect
+    "#<#{self.class} #{@merchants.size} rows>"
   end
 end
 
