@@ -81,6 +81,10 @@ class SalesEngine
   def successful_transactions
     invoice_repository.successful_transactions
   end
+
+  def charge(payment_data, invoice_id)
+    transaction_repository.charge(payment_data, invoice_id)
+  end
 end
 
 

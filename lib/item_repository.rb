@@ -95,14 +95,14 @@ class ItemRepository
     results = items.sort_by do |item|
       item.revenue
     end
-    results.reverse[0..(x-1)].map(&:id)
+    results.reverse[0..(x-1)]
   end
 
   def most_items(x = 0)
     results = items.sort_by do |items|
       items.items_sold
     end
-    results.reverse[0..(x-1)].map(&:id)
+    results.reverse[0..(x-1)]
   end
 
   def inspect

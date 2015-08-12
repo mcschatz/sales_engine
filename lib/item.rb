@@ -31,22 +31,26 @@ class Item
   end
 
   def successful_transactions
-    merchant.successful_invoices
+    invoice_items.select do |item|
+      item.successful_transactions
+    end
   end
 
   def revenue
-    successful_transactions.map(&:revenue).reduce(0, :+)
+    repository.engine.invoice_item_repository.revenue(id)
+    # successful_transactions.map(&:revenue).reduce(0, :+)
   end
 
   def items_sold
-    successful_transactions.map(&:items_sold)
+    successful_transactions.map(&:items_sold).reduce(0, :+)
   end
 
   def best_day
     day_count = Hash.new(0)
     successful_transactions.map do |transaction|
-     day_count[transaction.created_at] += 1
+      day_count[transaction.created_at] += 1
     end
-    day_count.key(day_count.values.max)
+    date = day_count.key(day_count.values.max)
+    Date.parse(date)
   end
 end

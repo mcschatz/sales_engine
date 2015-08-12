@@ -75,6 +75,11 @@ class TransactionRepository
     engine.find_invoice_by_id(id)
   end
 
+  def charge
+
+
+  end
+
   def inspect
     "#<#{self.class} #{@transactions.size} rows>"
   end

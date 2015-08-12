@@ -90,6 +90,10 @@ class InvoiceRepository
     engine.find_merchant_by_id(id)
   end
 
+  def charge(payment_data, id)
+    engine.charge(payment_data,id)
+  end
+
   def inspect
     "#<#{self.class} #{@invoices.size} rows>"
   end

@@ -50,21 +50,23 @@ class Invoice
 
   def revenue
     invoice_items.map(&:revenue).reduce(0, :+)
-    #require 'pry'; binding.pry
   end
 
   def items_sold
-    invoice_items.map do |item|
-      item.quantity
-    end
+    invoice_items.map(&:quantity).reduce(0, :+)
   end
 
   def convert_created_at
-    Date.parse(created_at).strftime("%Y-%m-%d")
+    date = Date.parse(created_at)
+    date.strftime("%Y-%m-%d")
   end
 
-  def on_date?(date)
+  def on_date?(date = nil)
     datum = date.strftime("%Y-%m-%d")
     convert_created_at == datum
+  end
+
+  def charge(payment_data)
+    repository.charge(payment_data, id)
   end
 end

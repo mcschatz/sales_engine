@@ -8,7 +8,7 @@ class Merchant
   def initialize(row, repository)
     @id         = row[:id]
     @name       = row[:name]
-    @created_at = row[:created_at]
+    @created_at = Date.parse(row[:created_at]).strftime("%Y-%m-%d")
     @updated_at = row[:updated_at]
     @repository = repository
   end
@@ -22,14 +22,14 @@ class Merchant
   end
 
   def successful_invoices
-    invoices.map do |invoice|
+    invoices.select do |invoice|
       invoice.successful_transactions
     end
   end
 
-  def revenue(date)
-    if date
-      results = successful_invoices.find_all {|invoice| invoice.on_date?(date)}
+  def revenue(date = nil)
+    if date != nil
+      results = successful_invoices.select {|invoice| invoice.on_date?(date)}
       results.map(&:revenue).reduce(0, :+)
     else
       successful_invoices.map(&:revenue).reduce(0, :+)
@@ -37,7 +37,7 @@ class Merchant
   end
 
   def items_sold
-    successful_invoices.map(&:items_sold)
+    successful_invoices.map(&:items_sold).reduce(0, :+)
   end
 
   def favorite_customer
@@ -58,5 +58,9 @@ class Merchant
   end
 
   def customers_with_pending_invoices
+    pending_invoices = invoices.select do |invoice|
+      invoice.successful_transactions == false
+    end
+    customer_owes = pending_invoices.map{|invoice| invoice.customer}
   end
 end

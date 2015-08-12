@@ -70,17 +70,17 @@ class MerchantRepository
     results = merchants.sort_by do |merchant|
       merchant.revenue
     end
-    results.reverse[0..(x-1)].map(&:id)
+    results.reverse[0..(x-1)]
   end
 
   def most_items(x = 0)
     results = merchants.sort_by do |merchant|
       merchant.items_sold
     end
-    results.reverse[0..(x-1)].map(&:id)
+    results.reverse[0..(x-1)]
   end
 
-  def revenue(date)
+  def revenue(date = nil)
     merchants.map do |merchant|
       merchant.revenue(date)
     end.reduce(:+)
