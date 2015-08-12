@@ -53,7 +53,9 @@ class Invoice
   end
 
   def items_sold
-    invoice_items.map(&:quantity).reduce(0, :+)
+    invoice_items.map do |item|
+      item.quantity
+    end.reduce(0, :+)
   end
 
   def convert_created_at

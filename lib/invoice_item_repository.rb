@@ -90,10 +90,6 @@ class InvoiceItemRepository
     engine.find_item_by_id(id)
   end
 
-  def revenue(item_id)
-   find_all_by_item_id(item_id).select(&:successful?).map(&:revenue).reduce(0, :+)
-  end
-
   def inspect
     "#<#{self.class} #{@invoice_items.size} rows>"
   end

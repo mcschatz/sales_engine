@@ -35,8 +35,6 @@ class InvoiceItem
   end
 
   def successful_transactions
-    invoice.map do |i|
-      i.successful_transactions
-    end
+    invoice.successful_transactions
   end
 end
