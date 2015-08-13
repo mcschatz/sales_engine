@@ -1,32 +1,22 @@
 require_relative 'test_helper'
 require './lib/merchant_repository'
+require './lib/sales_engine'
 
 class MerchantRepositoryTest < Minitest::Test
   attr_reader :mr
 
   def setup
-    merchant1 = Merchant.new({id: 1, name: 'Schroeder-Jerde', created_at: '2012-03-27 14:53:59 UTC', updated_at: '2012-03-27 14:53:59 UTC'}, self)
-    merchant2 = Merchant.new({id: 2, name: 'Timothy-Bigsby', created_at: '2012-02-11 13:43:29 UTC', updated_at: '2011-06-27 14:53:59 UTC'}, self)
-    merchant3 = Merchant.new({id: '', name: '', created_at: '', updated_at: ''}, self)
-    @mr = MerchantRepository.new([merchant1, merchant2, merchant3], self)
+    sample = SalesEngine.new('test/fixtures')
+    sample.startup
+    @mr = sample.merchant_repository
   end
 
-	def test_it_instantiates_an_empty_array
-		sample = MerchantRepository.new([], self)
-		assert_equal 0, sample.merchants.count
+	def test_it_instantiates_all_customers
+		assert_equal 11, mr.merchants.count
 	end
 
-  def test_it_hold_one_merchant
-    sample = MerchantRepository.new(["hello jeff"], self)
-    assert_equal 1, sample.merchants.count
-  end
-
-  def test_it_can_hold_three_merchants
-    assert_equal 3, mr.merchants.count
-  end
-
   def test_it_can_put_all_merchants
-    assert_equal 3, mr.all.count
+    assert_equal 11, mr.all.count
   end
 
   def test_it_can_find_a_random_merchant
@@ -34,16 +24,16 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_it_is_a_member_of_the_merchant_class
-    assert_equal Merchant, mr.find_by_name("Timothy-Bigsby").class
+    assert_equal Merchant, mr.find_by_name("Person K").class
     assert_equal Merchant, mr.find_by_id(2).class
   end
 
   def test_it_can_find_a_merchant_by_name
-    assert_equal "Timothy-Bigsby", mr.find_by_name("Timothy-Bigsby").name
+    assert_equal "Person B", mr.find_by_name("Person B").name
   end
 
   def test_it_can_find_a_merchant_case_insensitive
-    assert_equal "Timothy-Bigsby", mr.find_by_name('timothy-bigsby').name
+    assert_equal "Person H", mr.find_by_name('Person H').name
   end
 
   def test_it_does_not_know_nicknames
@@ -55,7 +45,7 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_all_merchants_by_name
-    assert_equal 1, mr.find_all_by_name("Timothy-Bigsby").count
+    assert_equal 1, mr.find_all_by_name("Person D").count
   end
 
   def test_it_can_find_all_merchants_by_id

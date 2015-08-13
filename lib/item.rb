@@ -21,7 +21,7 @@ class Item
     @created_at  = Date.parse(row[:created_at])
     @updated_at  = row[:updated_at]
     @repository  = repository
-    @number_sold = items_sold
+    # @number_sold = items_sold
 
   end
 

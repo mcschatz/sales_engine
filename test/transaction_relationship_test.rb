@@ -13,7 +13,7 @@ attr_reader :tr
   def test_it_can_find_a_single_transactions_invoice
     transaction = tr.find_by_id(1)
     invoice     = transaction.invoice.created_at
-    assert_equal '2012-03-25 09:54:09 UTC', invoice
+    assert_equal '2012-03-25', invoice
   end
 end
 

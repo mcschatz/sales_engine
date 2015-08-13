@@ -13,7 +13,7 @@ attr_reader :iir
   def test_it_can_find_a_single_invoice_items_invoice
     invoice_item = iir.find_by_id(1)
     invoice_item = invoice_item.invoice.created_at
-    assert_equal "2012-03-25 09:54:09 UTC", invoice_item
+    assert_equal "2012-03-25", invoice_item
   end
 
   def test_it_can_find_a_single_invoice_items_item
