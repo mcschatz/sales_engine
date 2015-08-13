@@ -102,9 +102,7 @@ class ItemRepository
     results = items.sort_by do |item|
       item.number_sold
     end
-     require 'pry'; binding.pry
     results.reverse[0..(x-1)]
-
   end
 
   def inspect

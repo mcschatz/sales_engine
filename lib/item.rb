@@ -75,12 +75,21 @@ class Item
     total_items
   end
 
+  def successful_invoices
+    invoices = invoice_items.map do |invoice_item|
+      invoice_item.invoice
+    end.uniq
+    successful_invoices = invoices.select do |invoice|
+      invoice.successful_transactions
+    end
+  end
+
   def best_day
     day_count = Hash.new(0)
-    successful_transactions.map do |transaction|
-      day_count[transaction.created_at] += 1
+    successful_invoices.map do |invoice|
+      day_count[invoice.created_at] += 1
     end
     day = day_count.key(day_count.values.max)
-    # Date.parse(day)
+    Date.parse(day)
   end
 end
