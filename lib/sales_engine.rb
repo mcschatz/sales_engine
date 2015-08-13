@@ -24,18 +24,18 @@ class SalesEngine
   end
 
   def startup
-    TransactionLoader.new(@transaction_repository, "./#{@data_dir}/transactions.csv").parse_transactions
-
-    MerchantLoader.new(@merchant_repository, "./#{@data_dir}/merchants.csv")
-                  .parse_merchants
-    CustomerLoader.new(@customer_repository, "./#{@data_dir}/customers.csv")
-                  .parse_customers
-    InvoiceItemLoader.new(@invoice_item_repository, "./#{@data_dir}/invoice_items.csv")
-                  .parse_invoice_items
-    InvoiceLoader.new(@invoice_repository, "./#{@data_dir}/invoices.csv")
-                  .parse_invoices
-    ItemLoader.new(@item_repository, "./#{@data_dir}/items.csv")
-                  .parse_items
+    TransactionLoader.new(@transaction_repository,
+                    "./#{@data_dir}/transactions.csv").parse_transactions
+    MerchantLoader.new(@merchant_repository,
+                    "./#{@data_dir}/merchants.csv").parse_merchants
+    CustomerLoader.new(@customer_repository,
+                    "./#{@data_dir}/customers.csv").parse_customers
+    InvoiceItemLoader.new(@invoice_item_repository,
+                    "./#{@data_dir}/invoice_items.csv").parse_invoice_items
+    InvoiceLoader.new(@invoice_repository,
+                    "./#{@data_dir}/invoices.csv").parse_invoices
+    ItemLoader.new(@item_repository,
+                    "./#{@data_dir}/items.csv").parse_items
   end
 
   def find_item_by_id(id)
@@ -86,13 +86,3 @@ class SalesEngine
     transaction_repository.charge(payment_data, invoice_id)
   end
 end
-
-
-# engine = SalesEngine.new
-# engine.startup
-# engine.merchant_repository.inspect
-# engine.customer_repository.inspect
-# engine.invoice_item_repository.inspect
-# engine.invoice_repository.inspect
-# engine.item_repository.inspect
-# engine.transaction_repository.inspect

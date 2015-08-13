@@ -21,7 +21,7 @@ class Item
     @created_at  = Date.parse(row[:created_at])
     @updated_at  = row[:updated_at]
     @repository  = repository
-    # @number_sold = items_sold
+    @number_sold = items_sold
 
   end
 
@@ -55,19 +55,15 @@ class Item
     invoices = invoice_items.map do |invoice_item|
       invoice_item.invoice
     end.uniq
-
     successful_invoices = invoices.select do |invoice|
       invoice.successful_transactions
     end
-
     successful_i_items = successful_invoices.flat_map do |invoice|
       invoice.invoice_items
     end
-
     relevant_i_items = successful_i_items.select do |invoice_item|
       invoice_item.item_id == id
     end
-
     total_items = relevant_i_items.reduce(0) do |result, invoice_item|
       result += invoice_item.quantity
       result
