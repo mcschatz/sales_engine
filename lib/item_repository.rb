@@ -100,10 +100,11 @@ class ItemRepository
 
   def most_items(x = 0)
     results = items.sort_by do |item|
-      item.items_sold
+      item.number_sold
     end
-    # require "pry"; binding.pry
+     require 'pry'; binding.pry
     results.reverse[0..(x-1)]
+
   end
 
   def inspect

@@ -24,6 +24,8 @@ class SalesEngine
   end
 
   def startup
+    TransactionLoader.new(@transaction_repository, "/#{@data_dir}/transactions.csv").parse_transactions
+
     MerchantLoader.new(@merchant_repository, "/#{@data_dir}/merchants.csv")
                   .parse_merchants
     CustomerLoader.new(@customer_repository, "/#{@data_dir}/customers.csv")
@@ -34,8 +36,6 @@ class SalesEngine
                   .parse_invoices
     ItemLoader.new(@item_repository, "/#{@data_dir}/items.csv")
                   .parse_items
-    TransactionLoader.new(@transaction_repository, "/#{@data_dir}/transactions.csv")
-                  .parse_transactions
   end
 
   def find_item_by_id(id)
