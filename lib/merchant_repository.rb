@@ -11,8 +11,8 @@ class MerchantRepository
   end
 
   def add_merchant(row, repository)
-  	merchants << Merchant.new(row, self)
-	end
+    merchants << Merchant.new(row, self)
+  end
 
   def all
     merchants

@@ -75,7 +75,6 @@ class TransactionRepository
     engine.find_invoice_by_id(id)
   end
 
-
   def charge(payment_data, invoice_id)
     credit_card_number = payment_data[:credit_card_number]
     credit_card_expiration_date = payment_data[:credit_card_expiration_date]
