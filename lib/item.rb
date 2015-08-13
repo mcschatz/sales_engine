@@ -9,8 +9,7 @@ class Item
               :merchant_id,
               :created_at,
               :updated_at,
-              :repository,
-              :number_sold
+              :repository
 
   def initialize(row, repository)
     @id          = row[:id]
@@ -21,7 +20,6 @@ class Item
     @created_at  = Date.parse(row[:created_at])
     @updated_at  = row[:updated_at]
     @repository  = repository
-    @number_sold = items_sold
 
   end
 
@@ -43,12 +41,6 @@ class Item
     successful_transactions.map do |invoice|
       invoice.revenue
     end.reduce(0, :+)
-  end
-
-  def successful_invoice_items
-    invoice_items.select do |invoice_item|
-      invoice_item.item_id == id
-    end
   end
 
   def items_sold

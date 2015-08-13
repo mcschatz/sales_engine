@@ -5,7 +5,7 @@ require './lib/sales_engine'
 class CustomerRepositoryTest < Minitest::Test
 attr_reader :cr
   def setup
-    sample = SalesEngine.new('test/fixtures')
+    sample = SalesEngine.new('./test/fixtures')
     sample.startup
     @cr = sample.customer_repository
   end

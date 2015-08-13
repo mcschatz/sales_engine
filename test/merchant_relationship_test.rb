@@ -6,7 +6,7 @@ class MerchantRelationshipTest < Minitest::Test
 attr_reader :mr
 
   def setup
-    sample = SalesEngine.new('test/fixtures')
+    sample = SalesEngine.new('./test/fixtures')
     sample.startup
     @mr = sample.merchant_repository
   end
@@ -58,17 +58,9 @@ attr_reader :mr
     merchant = mr.find_by_id(11)
     assert_equal 'Timothy', merchant.favorite_customer.first_name
   end
+
+  def test_it_can_find_customers_with_pending_invoices
+    merchant = mr.find_by_id(11)
+    assert_equal 1, merchant.customers_with_pending_invoices.count
+  end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -5,7 +5,7 @@ class InvoiceItemRelationshipTest < Minitest::Test
 attr_reader :iir
 
   def setup
-    sample = SalesEngine.new('test/fixtures')
+    sample = SalesEngine.new('./test/fixtures')
     sample.startup
     @iir = sample.invoice_item_repository
   end

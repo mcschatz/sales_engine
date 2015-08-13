@@ -5,7 +5,7 @@ class TransactionRelationshipTest < Minitest::Test
 attr_reader :tr
 
   def setup
-    sample = SalesEngine.new('test/fixtures')
+    sample = SalesEngine.new('./test/fixtures')
     sample.startup
     @tr = sample.transaction_repository
   end

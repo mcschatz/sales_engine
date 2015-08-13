@@ -25,17 +25,17 @@ class SalesEngine
 
   def startup
     TransactionLoader.new(@transaction_repository,
-                    "./#{@data_dir}/transactions.csv").parse_transactions
+                    "#{@data_dir}/transactions.csv").parse_transactions
     MerchantLoader.new(@merchant_repository,
-                    "./#{@data_dir}/merchants.csv").parse_merchants
+                    "#{@data_dir}/merchants.csv").parse_merchants
     CustomerLoader.new(@customer_repository,
-                    "./#{@data_dir}/customers.csv").parse_customers
+                    "#{@data_dir}/customers.csv").parse_customers
     InvoiceItemLoader.new(@invoice_item_repository,
-                    "./#{@data_dir}/invoice_items.csv").parse_invoice_items
+                    "#{@data_dir}/invoice_items.csv").parse_invoice_items
     InvoiceLoader.new(@invoice_repository,
-                    "./#{@data_dir}/invoices.csv").parse_invoices
+                    "#{@data_dir}/invoices.csv").parse_invoices
     ItemLoader.new(@item_repository,
-                    "./#{@data_dir}/items.csv").parse_items
+                    "#{@data_dir}/items.csv").parse_items
   end
 
   def find_item_by_id(id)

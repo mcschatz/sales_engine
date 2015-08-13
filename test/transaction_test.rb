@@ -4,7 +4,9 @@ require './lib/transaction'
 class TransactionTest < Minitest::Test
 attr_reader :transaction
   def setup
-    @transaction = Transaction.new({id: 1, invoice_id: 1, credit_card_number: 4654405418249630, credit_card_expiration_date: '10/15', result: 'success', created_at: '2012-03-27 14:54:09 UTC', updated_at: '2012-03-27 14:54:09 UTC'}, self)
+    @transaction = Transaction.new({id: 1, invoice_id: 1, credit_card_number: 4654405418249630,
+      credit_card_expiration_date: '10/15', result: 'success',
+      created_at: '2012-03-27 14:54:09 UTC', updated_at: '2012-03-27 14:54:09 UTC'}, self)
   end
 
   def test_the_transaction_has_an_id_attribute

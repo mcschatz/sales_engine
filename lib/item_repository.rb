@@ -100,7 +100,7 @@ class ItemRepository
 
   def most_items(x = 0)
     results = items.sort_by do |item|
-      item.number_sold
+      item.items_sold
     end
     results.reverse[0..(x-1)]
   end

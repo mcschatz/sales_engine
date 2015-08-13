@@ -6,7 +6,7 @@ class MerchantRepositoryTest < Minitest::Test
   attr_reader :mr
 
   def setup
-    sample = SalesEngine.new('test/fixtures')
+    sample = SalesEngine.new('./test/fixtures')
     sample.startup
     @mr = sample.merchant_repository
   end
