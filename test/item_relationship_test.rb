@@ -23,7 +23,8 @@ attr_reader :ir
   end
 
   def test_it_can_find_most_revenue_by_items
-    assert_equal [8], ir.most_revenue(1)
+    sample = ir.most_revenue(1)
+    assert_equal 8, sample.first.id
   end
 
   def test_it_can_find_successful_transactions
@@ -32,11 +33,12 @@ attr_reader :ir
   end
 
   def test_it_can_find_the_top_item_instances_ranked_by_total_number_sold
-    assert_equal [2], ir.most_items(1)
+    sample = ir.most_items(1)
+    assert_equal 10, sample.first.id
   end
 
   def test_it_can_find_the_date_of_the_best_day
     item     = ir.find_by_id(2)
-    assert_equal ('2012-03-12 05:54:09 UTC'), item.best_day
+    assert_equal Date.parse('2012-03-06'), item.best_day
   end
 end

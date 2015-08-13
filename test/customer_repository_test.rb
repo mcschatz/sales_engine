@@ -1,31 +1,21 @@
 require_relative 'test_helper'
 require './lib/customer_repository'
+require './lib/sales_engine'
 
 class CustomerRepositoryTest < Minitest::Test
 attr_reader :cr
   def setup
-    customer1 = Customer.new({id: 1, first_name: 'Timothy', last_name: 'Bigsby', created_at: '2012-02-11 13:43:29 UTC', updated_at: '2011-06-27 14:53:59 UTC'}, self)
-    customer2 = Customer.new({id: 2, first_name: 'Timothy', last_name: 'Bigsby', created_at: '2012-02-11 13:43:29 UTC', updated_at: '2011-06-27 14:53:59 UTC'}, self)
-    customer3 = Customer.new({id: '', first_name: '', last_name: '', created_at: '', updated_at: ''}, self)
-    @cr = CustomerRepository.new([customer1, customer2, customer3], self)
+    sample = SalesEngine.new('test/fixtures')
+    sample.startup
+    @cr = sample.customer_repository
   end
 
-  def test_it_instantiates_an_empty_array
-    sample = CustomerRepository.new([], self)
-    assert_equal 0, sample.customers.count
-  end
-
-  def test_it_hold_one_customer
-    sample = CustomerRepository.new(["hello jeff"], self)
-    assert_equal 1, sample.customers.count
-  end
-
-  def test_it_can_hold_three_customers
-    assert_equal 3, cr.customers.count
+  def test_it_instantiates_all_customers
+    assert_equal 11, cr.customers.count
   end
 
   def test_it_can_put_all_customers
-    assert_equal 3, cr.all.count
+    assert_equal 11, cr.all.count
   end
 
   def test_it_can_find_a_random_customer
@@ -67,11 +57,11 @@ attr_reader :cr
   end
 
   def test_it_can_find_all_customers_by_first_name
-    assert_equal 2, cr.find_all_by_first_name("Timothy").count
+    assert_equal 1, cr.find_all_by_first_name("Timothy").count
   end
 
   def test_it_can_find_all_customers_by_last_name
-    assert_equal 2, cr.find_all_by_last_name("Bigsby").count
+    assert_equal 1, cr.find_all_by_last_name("Bigsby").count
   end
 
   def test_it_can_find_all_customers_by_id

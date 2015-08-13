@@ -10,7 +10,7 @@ class Item
               :created_at,
               :updated_at,
               :repository,
-              :items_sold
+              :number_sold
 
   def initialize(row, repository)
     @id          = row[:id]
@@ -21,7 +21,8 @@ class Item
     @created_at  = Date.parse(row[:created_at])
     @updated_at  = row[:updated_at]
     @repository  = repository
-    @items_sold  ||= items_sold
+    # @number_sold = items_sold
+
   end
 
   def merchant
@@ -51,26 +52,44 @@ class Item
   end
 
   def items_sold
-    invoice_items.map do |invoice_item|
+    invoices = invoice_items.map do |invoice_item|
       invoice_item.invoice
-    end.select do |invoice|
+    end.uniq
+
+    successful_invoices = invoices.select do |invoice|
       invoice.successful_transactions
-    end.flat_map do |invoice|
+    end
+
+    successful_i_items = successful_invoices.flat_map do |invoice|
       invoice.invoice_items
-    end.select do |invoice_item|
+    end
+
+    relevant_i_items = successful_i_items.select do |invoice_item|
       invoice_item.item_id == id
-    end.reduce(0) do |result, invoice_item|
+    end
+
+    total_items = relevant_i_items.reduce(0) do |result, invoice_item|
       result += invoice_item.quantity
       result
+    end
+    total_items
+  end
+
+  def successful_invoices
+    invoices = invoice_items.map do |invoice_item|
+      invoice_item.invoice
+    end.uniq
+    successful_invoices = invoices.select do |invoice|
+      invoice.successful_transactions
     end
   end
 
   def best_day
     day_count = Hash.new(0)
-    successful_transactions.map do |transaction|
-      day_count[transaction.created_at] += 1
+    successful_invoices.map do |invoice|
+      day_count[invoice.created_at] += 1
     end
     day = day_count.key(day_count.values.max)
-    # Date.parse(day)
+    Date.parse(day)
   end
 end
