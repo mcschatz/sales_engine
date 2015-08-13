@@ -15,5 +15,9 @@ attr_reader :tr
     invoice     = transaction.invoice.created_at
     assert_equal '2012-03-25', invoice
   end
+
+  def test_it_can_charge_a_transaction
+
+  end
 end
 
